@@ -5,4 +5,10 @@ Implemented as a set of XSL documents to apply to existing RadioEPG and SPI docu
 
 ## Status
 
-Currently only a simple XSI (RadioEPG 1.0/1.1) to SI (SPI) transform exists.
+Currently, transforms exist for:
+
+*Service Information*
+
+* XSI (RadioEPG 1.0/1.1) to SI (SPI) 
+* SI (SPI) to XSI (RadioEPG 1.1)
+
