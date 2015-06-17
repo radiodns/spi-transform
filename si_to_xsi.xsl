@@ -118,7 +118,7 @@
 
 	<xsl:template match="spi:link">
 		<link>
-			<xsl:attribute name="uri">
+			<xsl:attribute name="url">
 				<xsl:value-of select="@uri"/>
 			</xsl:attribute>
 			<xsl:if test="@mimeValue">
