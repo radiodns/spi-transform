@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="1.0" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:epg="http://www.worlddab.org/schemas/epgDataTypes/14"
 	xmlns:repg="http://schemas.radiodns.org/epg/11"
@@ -117,7 +117,7 @@
 				<xsl:value-of select="@href"/>
 			</xsl:attribute>
 			<xsl:if test="epg:name">
-				<xsl:text><xsl:value-of select="epg:name"/></xsl:text>
+				<xsl:value-of select="epg:name"/>
 			</xsl:if>
 		</genre>
 	</xsl:template>
