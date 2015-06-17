@@ -25,8 +25,8 @@
 			<xsl:attribute name="xsi:schemaLocation">
 				<xsl:text>http://schemas.radiodns.org/epg/11 http://schemas.radiodns.org/epg/11/radioepg_xsi_11.xsd</xsl:text>
 			</xsl:attribute>
+			<xsl:apply-templates/>
 		</serviceInformation>
-		<xsl:apply-templates/>
 	</xsl:template>
 
 	<xsl:template match="spi:services">
@@ -82,21 +82,25 @@
 			<xsl:attribute name="url">
 				<xsl:value-of select="@url"/>
 			</xsl:attribute>
-			<xsl:attribute name="type">
-				<xsl:value-of select="@type"/>
-			</xsl:attribute>
-			<xsl:if test="@type='logo_unrestricted'">
+			<xsl:if test="@type">
+				<xsl:attribute name="type">
+					<xsl:value-of select="@type"/>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@width">
 				<xsl:attribute name="width">
 					<xsl:value-of select="@width"/>
 				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@height">
 				<xsl:attribute name="height">
 					<xsl:value-of select="@height"/>
 				</xsl:attribute>
-				<xsl:if test="@mimeValue">
-					<xsl:attribute name="mimeValue">
-						<xsl:value-of select="@mimeValue"/>
-					</xsl:attribute>
-				</xsl:if>
+			</xsl:if>
+			<xsl:if test="@mimeValue">
+				<xsl:attribute name="mimeValue">
+					<xsl:value-of select="@mimeValue"/>
+				</xsl:attribute>
 			</xsl:if>
 		</epg:multimedia>
 	</xsl:template>
@@ -106,8 +110,23 @@
 			<xsl:attribute name="href">
 				<xsl:value-of select="@href"/>
 			</xsl:attribute>
-			<xsl:apply-templates/>
+			<epg:name>
+				<xsl:value-of select="."/>
+			</epg:name>
 		</epg:genre>
+	</xsl:template>
+
+	<xsl:template match="spi:link">
+		<link>
+			<xsl:attribute name="uri">
+				<xsl:value-of select="@uri"/>
+			</xsl:attribute>
+			<xsl:if test="@mimeValue">
+				<xsl:attribute name="mimeValue">
+					<xsl:value-of select="@mimeValue"/>
+				</xsl:attribute>
+			</xsl:if>
+		</link>
 	</xsl:template>
 
 	<xsl:template match="spi:keywords">
@@ -154,6 +173,40 @@
 				</xsl:attribute>
 			</xsl:if>
 		</serviceID>
+	</xsl:template>
+
+	<xsl:template match="spi:radiodns">
+		<radiodns>
+			<xsl:attribute name="fqdn">
+				<xsl:value-of select="@fqdn"/>
+			</xsl:attribute>
+			<xsl:attribute name="serviceIdentifier">
+				<xsl:value-of select="@serviceIdentifier"/>
+			</xsl:attribute>
+		</radiodns>
+	</xsl:template>
+
+	<xsl:template match="spi:serviceGroupMember">
+		<memberOf>
+			<xsl:attribute name="id">
+				<xsl:value-of select="@id"/>
+			</xsl:attribute>
+		</memberOf>
+	</xsl:template>
+
+	<xsl:template match="spi:serviceGroups">
+		<groups>
+			<xsl:apply-templates select="spi:serviceGroup"/>
+		</groups>
+	</xsl:template>
+
+	<xsl:template match="spi:serviceGroup">
+		<group>
+			<xsl:attribute name="id">
+				<xsl:value-of select="@id"/>
+			</xsl:attribute>
+			<xsl:apply-templates/>
+		</group>
 	</xsl:template>
 	
 </xsl:stylesheet>
