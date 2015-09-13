@@ -25,8 +25,15 @@
 	
 	<xsl:template match="repg:services">
 		<services>
+			<xsl:apply-templates select="repg:serviceProvider"/>
 			<xsl:apply-templates select="repg:service"/>
 		</services>
+	</xsl:template>
+
+	<xsl:template match="repg:serviceProvider">
+		<serviceProvider>
+		 	<xsl:apply-templates />
+		</serviceProvider>
 	</xsl:template>
 	
 	<xsl:template match="repg:service">
@@ -168,6 +175,28 @@
 			</xsl:attribute>
 		</serviceGroupMember>	
 	</xsl:template>
+
+	<xsl:template match="repg:location">
+		<geolocation>
+			<xsl:apply-templates />
+		</geolocation>
+	</xsl:template>
+
+	<xsl:template match="repg:country">
+		<country>
+			<xsl:apply-templates />
+		</country>
+	</xsl:template>
+	<xsl:template match="repg:point">
+		<point>
+			<xsl:apply-templates />
+		</point>
+	</xsl:template>
+	<xsl:template match="repg:polygon">
+		<polygon>
+			<xsl:apply-templates />
+		</polygon>
+	</xsl:template>
 	
 	<xsl:template match="repg:groups">
 		<serviceGroups>
@@ -182,6 +211,6 @@
 			</xsl:attribute>
 			<xsl:apply-templates />
 		</serviceGroup>
-	</xsl:template>	
-	
+	</xsl:template>
+
 </xsl:stylesheet>
