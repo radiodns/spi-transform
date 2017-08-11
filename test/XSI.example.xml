@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceInformation xmlns="http://schemas.radiodns.org/epg/11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:epg="http://www.worlddab.org/schemas/epgDataTypes/14" originator="Station 1 Group" serviceProvider="Station 1 Group" creationTime="2017-01-01T00:00:00+00:00" xml:lang="en" xsi:schemaLocation="http://schemas.radiodns.org/epg/11 http://schemas.radiodns.org/epg/11/radioepg_xsi_11.xsd">
+  <services>
+    <serviceProvider>
+      <epg:shortName>Station1</epg:shortName>
+      <epg:mediumName>Station 1</epg:mediumName>
+      <epg:longName>Station 1 Countyshire</epg:longName>
+      <mediaDescription>
+        <epg:shortDescription>The best music for the people of Countyshire</epg:shortDescription>
+        <epg:longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</epg:longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <link url="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+      <location id="tsa-1">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </location>
+      <location id="tsa-2">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </location>
+    </serviceProvider>
+    <service>
+      <serviceID id="dab:ce1.c123.c456.0" mime="audio/aacp" bitrate="48" cost="10" offset="2500">
+        <location id="tsa-3">
+          <point>45.256 -71.92</point>
+          <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+          <country>GB</country>
+        </location>
+        <location ref="tsa-2"/>
+      </serviceID>
+      <epg:shortName>Station1</epg:shortName>
+      <epg:mediumName>Station 1</epg:mediumName>
+      <epg:longName>Station 1 Countyshire</epg:longName>
+      <mediaDescription>
+        <epg:shortDescription>The best music for the people of Countyshire</epg:shortDescription>
+        <epg:longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</epg:longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <epg:name preferred="true">Hit-Chart/Song Requests</epg:name>
+        <epg:definition>All your favourite songs</epg:definition>
+      </epg:genre>
+      <keywords>station,1,one,county,countshire,best,music</keywords>
+      <link url="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+      <memberOf id="station1"/>
+      <radiodns fqdn="rnds.station1.com" serviceIdentifier="station1"/>
+      <location id="tsa-4">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </location>
+      <location ref="tsa-2"/>
+    </service>
+  </services>
+  <groups>
+    <group id="station1">
+      <epg:shortName>Station1</epg:shortName>
+      <epg:mediumName>Station 1 Group</epg:mediumName>
+      <epg:longName>Station 1 Countyshire Group</epg:longName>
+      <mediaDescription>
+        <epg:shortDescription>The best music for the people of Countyshire</epg:shortDescription>
+        <epg:longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</epg:longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <keywords>station,1,one,county,countshire,best,music</keywords>
+      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <epg:name preferred="true">Hit-Chart/Song Requests</epg:name>
+        <epg:definition>All your favourite songs</epg:definition>
+      </epg:genre>
+      <link url="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+    </group>
+  </groups>
+</serviceInformation>

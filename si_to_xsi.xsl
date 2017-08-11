@@ -1,212 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns="http://schemas.radiodns.org/epg/11"
-	xmlns:spi="http://www.worlddab.org/schemas/spi/31"
-	xmlns:epg="http://www.worlddab.org/schemas/epgDataTypes/14"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	exclude-result-prefixes="spi">
-	
-	<xsl:template match="/">
-		<xsl:apply-templates select="spi:serviceInformation"/>
-	</xsl:template>
+<xsl:stylesheet version="1.0"
+    xmlns="http://schemas.radiodns.org/epg/11"
+    xmlns:epg="http://www.worlddab.org/schemas/epgDataTypes/14"
+    xmlns:spi="http://www.worlddab.org/schemas/spi/31"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    exclude-result-prefixes="spi">
 
-	<xsl:template match="spi:serviceInformation">
-		<serviceInformation>
-			<xsl:attribute name="creationTime">
-				<xsl:value-of select="@creationTime"/>
-			</xsl:attribute>
-			<xsl:attribute name="originator">
-				<xsl:value-of select="@originator"/>
-			</xsl:attribute>
-			<xsl:attribute name="xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:attribute>
-			<xsl:attribute name="xsi:schemaLocation">
-				<xsl:text>http://schemas.radiodns.org/epg/11 http://schemas.radiodns.org/epg/11/radioepg_xsi_11.xsd</xsl:text>
-			</xsl:attribute>
-			<xsl:apply-templates/>
-		</serviceInformation>
-	</xsl:template>
+    <xsl:output encoding="UTF-8" />
 
-	<xsl:template match="spi:services">
-		<services>
-			<xsl:apply-templates select="spi:service"/>
-		</services>
-	</xsl:template>
-	
-	<xsl:template match="spi:service">
-		<service>
-			<xsl:apply-templates />
-		</service>
-	</xsl:template>
+    <!-- moves elements formerly of the DAB EPG namespace back out to that namespace -->
+    <xsl:template match="spi:definition |
+                         spi:genre |
+                         spi:shortDescription |
+                         spi:shortName |
+                         spi:longDescription |
+                         spi:longName |
+                         spi:mediumName |
+                         spi:multimedia |
+                         spi:name">
+        <xsl:element name="epg:{local-name()}">
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
+    </xsl:template>
 
-	<xsl:template match="spi:shortName">
-		<epg:shortName>
-			<xsl:value-of select="."/>
-		</epg:shortName>
-	</xsl:template>
-	
-	<xsl:template match="spi:mediumName">
-		<epg:mediumName>
-			<xsl:value-of select="."/>
-		</epg:mediumName>
-	</xsl:template>
-	
-	<xsl:template match="spi:longName">
-		<epg:longName>
-			<xsl:value-of select="."/>
-		</epg:longName>
-	</xsl:template>
+    <!-- maps elements that remain identical from SI namespace to current namespace -->
+    <xsl:template match="/spi:serviceInformation |
+                         /spi:serviceInformation/spi:services |
+                         /spi:serviceInformation/spi:services/spi:service |
+                         /spi:serviceInformation/spi:services/spi:service/spi:bearer/spi:geolocation/spi:*[local-name() = 'point' or local-name() = 'polygon' or local-name() = 'country'] |
+                         /spi:serviceInformation/spi:services/spi:service/spi:geolocation/spi:*[local-name() = 'point' or local-name() = 'polygon' or local-name() = 'country'] |
+                         /spi:serviceInformation/spi:services/spi:service/spi:keywords |
+                         /spi:serviceInformation/spi:services/spi:service/spi:link |
+                         /spi:serviceInformation/spi:services/spi:service/spi:mediaDescription |
+                         /spi:serviceInformation/spi:services/spi:service/spi:radiodns |
+                         /spi:serviceInformation/spi:services/spi:serviceProvider |
+                         /spi:serviceInformation/spi:services/spi:serviceProvider/spi:geolocation/spi:*[local-name() = 'point' or local-name() = 'polygon' or local-name() = 'country'] |
+                         /spi:serviceInformation/spi:services/spi:serviceProvider/spi:link |
+                         /spi:serviceInformation/spi:services/spi:serviceProvider/spi:mediaDescription |
+                         /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:keywords |
+                         /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:link |
+                         /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:mediaDescription">
+        <xsl:element name="{local-name()}">
+            <xsl:apply-templates select="@*|node()" />
+        </xsl:element>
+    </xsl:template>
 
-	<xsl:template match="spi:mediaDescription">
-		<mediaDescription>
-			<xsl:apply-templates/>
-		</mediaDescription>
-	</xsl:template>
+    <!-- changes the XSI schema to that used in the current namespace -->
+    <xsl:template match="/spi:serviceInformation/@xsi:schemaLocation">
+        <xsl:attribute name="xsi:schemaLocation">http://schemas.radiodns.org/epg/11 http://schemas.radiodns.org/epg/11/radioepg_xsi_11.xsd</xsl:attribute>
+    </xsl:template>
 
-	<xsl:template match="spi:shortDescription">
-		<epg:shortDescription>
-			<xsl:value-of select="."/>
-		</epg:shortDescription>
-	</xsl:template>
+    <!-- maps SI serviceGroups element to XSI groups element -->
+    <xsl:template match="/spi:serviceInformation/spi:serviceGroups">
+        <groups>
+            <xsl:apply-templates select="@*|node()"/>
+        </groups>
+    </xsl:template>
 
-	<xsl:template match="spi:longDescription">
-		<epg:longDescription>
-			<xsl:value-of select="."/>
-		</epg:longDescription>
-	</xsl:template>
+    <!-- maps SI serviceGroup element to XSI group element -->
+    <xsl:template match="/spi:serviceInformation/spi:serviceGroups/spi:serviceGroup">
+        <group>
+            <xsl:apply-templates select="@*|node()"/>
+        </group>
+    </xsl:template>
 
-	<xsl:template match="spi:multimedia">
-		<epg:multimedia>
-			<xsl:attribute name="url">
-				<xsl:value-of select="@url"/>
-			</xsl:attribute>
-			<xsl:if test="@type">
-				<xsl:attribute name="type">
-					<xsl:value-of select="@type"/>
-				</xsl:attribute>
-			</xsl:if>
-			<xsl:if test="@width">
-				<xsl:attribute name="width">
-					<xsl:value-of select="@width"/>
-				</xsl:attribute>
-			</xsl:if>
-			<xsl:if test="@height">
-				<xsl:attribute name="height">
-					<xsl:value-of select="@height"/>
-				</xsl:attribute>
-			</xsl:if>
-			<xsl:if test="@mimeValue">
-				<xsl:attribute name="mimeValue">
-					<xsl:value-of select="@mimeValue"/>
-				</xsl:attribute>
-			</xsl:if>
-		</epg:multimedia>
-	</xsl:template>
+    <!-- maps SI geolocation element to XSI location element -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:*[local-name() = 'service' or local-name() = 'serviceProvider']/spi:geolocation |
+                         /spi:serviceInformation/spi:services/spi:service/spi:bearer/spi:geolocation |
+                         /spi:serviceInformation/spi:serviceGroups/spi:group/spi:geolocation">
+        <location>
+            <xsl:apply-templates select="@*|node()"/>
+        </location>
+    </xsl:template>
 
-	<xsl:template match="spi:genre">
-		<epg:genre>
-			<xsl:attribute name="href">
-				<xsl:value-of select="@href"/>
-			</xsl:attribute>
-			<epg:name>
-				<xsl:value-of select="."/>
-			</epg:name>
-		</epg:genre>
-	</xsl:template>
+    <!-- maps SI bearer element to XSI serviceID element -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:service/spi:bearer">
+        <serviceID>
+            <xsl:apply-templates select="@*|node()"/>
+        </serviceID>
+    </xsl:template>
 
-	<xsl:template match="spi:link">
-		<link>
-			<xsl:attribute name="url">
-				<xsl:value-of select="@uri"/>
-			</xsl:attribute>
-			<xsl:if test="@mimeValue">
-				<xsl:attribute name="mimeValue">
-					<xsl:value-of select="@mimeValue"/>
-				</xsl:attribute>
-			</xsl:if>
-		</link>
-	</xsl:template>
+    <!-- maps SI serviceGroupMember element to XSI memberOf element -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:service/spi:serviceGroupMember">
+        <memberOf>
+            <xsl:apply-templates select="@*|node()"/>
+        </memberOf>
+    </xsl:template>
 
-	<xsl:template match="spi:keywords">
-		<epg:keywords>
-			<xsl:value-of select="."/>
-		</epg:keywords>
-	</xsl:template>
+    <!-- maps SI link element uri attribute to XSI link element url attribute -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:*[local-name() = 'service' or local-name() = 'serviceProvider']/spi:link/@uri |
+                         /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:link/@uri">
+        <xsl:attribute name="url">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
 
-	<xsl:template match="spi:geolocation">
-		<location>
-			<xsl:apply-templates/>
-		</location>
-	</xsl:template>
+    <!-- maps SI bearer element mimeValue attribute to XSI serviceID element mime attribute -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:service/spi:bearer/@mimeValue">
+        <xsl:attribute name="mime">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
 
-	<xsl:template match="spi:country">
-		<country>
-			<xsl:value-of select="."/>
-		</country>
-	</xsl:template>
+    <!-- copies all child elements and attributes recursively -->
+    <xsl:template match="@*|node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" />
+        </xsl:copy>
+    </xsl:template>
 
-	<xsl:template match="spi:polygon">
-		<polygon>
-			<xsl:value-of select="."/>
-		</polygon>
-	</xsl:template>
-
-	<xsl:template match="spi:point">
-		<point>
-			<xsl:value-of select="."/>
-		</point>
-	</xsl:template>
-
-	<xsl:template match="spi:bearer">
-		<serviceID>
-			<xsl:attribute name="id">
-				<xsl:value-of select="@id"/>
-			</xsl:attribute>
-			<xsl:attribute name="cost">
-				<xsl:value-of select="@cost"/>
-			</xsl:attribute>
-			<xsl:if test="starts-with(@id, 'dab:')">
-				<xsl:attribute name="mime">
-					<xsl:value-of select="@mimeValue"/>
-				</xsl:attribute>
-			</xsl:if>
-		</serviceID>
-	</xsl:template>
-
-	<xsl:template match="spi:radiodns">
-		<radiodns>
-			<xsl:attribute name="fqdn">
-				<xsl:value-of select="@fqdn"/>
-			</xsl:attribute>
-			<xsl:attribute name="serviceIdentifier">
-				<xsl:value-of select="@serviceIdentifier"/>
-			</xsl:attribute>
-		</radiodns>
-	</xsl:template>
-
-	<xsl:template match="spi:serviceGroupMember">
-		<memberOf>
-			<xsl:attribute name="id">
-				<xsl:value-of select="@id"/>
-			</xsl:attribute>
-		</memberOf>
-	</xsl:template>
-
-	<xsl:template match="spi:serviceGroups">
-		<groups>
-			<xsl:apply-templates select="spi:serviceGroup"/>
-		</groups>
-	</xsl:template>
-
-	<xsl:template match="spi:serviceGroup">
-		<group>
-			<xsl:attribute name="id">
-				<xsl:value-of select="@id"/>
-			</xsl:attribute>
-			<xsl:apply-templates/>
-		</group>
-	</xsl:template>
-	
 </xsl:stylesheet>

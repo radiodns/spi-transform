@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceInformation xmlns="http://www.worlddab.org/schemas/spi/31" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" originator="Station 1 Group" serviceProvider="Station 1 Group" creationTime="2017-01-01T00:00:00+00:00" xml:lang="en" xsi:schemaLocation="http://www.worlddab.org/schemas/spi/31 spi_31.xsd">
+  <services>
+    <serviceProvider>
+      <shortName>Station1</shortName>
+      <mediumName>Station 1</mediumName>
+      <longName>Station 1 Countyshire</longName>
+      <mediaDescription>
+        <shortDescription>The best music for the people of Countyshire</shortDescription>
+        <longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <link uri="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+      <geolocation id="tsa-1">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </geolocation>
+      <geolocation id="tsa-2">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </geolocation>
+    </serviceProvider>
+    <service>
+      <bearer id="dab:ce1.c123.c456.0" mimeValue="audio/aacp" bitrate="48" cost="10" offset="2500">
+        <geolocation id="tsa-3">
+          <point>45.256 -71.92</point>
+          <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+          <country>GB</country>
+        </geolocation>
+        <geolocation ref="tsa-2"/>
+      </bearer>
+      <shortName>Station1</shortName>
+      <mediumName>Station 1</mediumName>
+      <longName>Station 1 Countyshire</longName>
+      <mediaDescription>
+        <shortDescription>The best music for the people of Countyshire</shortDescription>
+        <longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <name preferred="true">Hit-Chart/Song Requests</name>
+        <definition>All your favourite songs</definition>
+      </genre>
+      <keywords>station,1,one,county,countshire,best,music</keywords>
+      <link uri="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+      <serviceGroupMember id="station1"/>
+      <radiodns fqdn="rnds.station1.com" serviceIdentifier="station1"/>
+      <geolocation id="tsa-4">
+        <point>45.256 -71.92</point>
+        <polygon>45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256 -110.45</polygon>
+        <country>GB</country>
+      </geolocation>
+      <geolocation ref="tsa-2"/>
+    </service>
+  </services>
+  <serviceGroups>
+    <serviceGroup id="station1">
+      <shortName>Station1</shortName>
+      <mediumName>Station 1 Group</mediumName>
+      <longName>Station 1 Countyshire Group</longName>
+      <mediaDescription>
+        <shortDescription>The best music for the people of Countyshire</shortDescription>
+        <longDescription>From the top of the hill, to the bottom of the dale, we play the best music for the people of Countyshire</longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
+      </mediaDescription>
+      <keywords>station,1,one,county,countshire,best,music</keywords>
+      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <name preferred="true">Hit-Chart/Song Requests</name>
+        <definition>All your favourite songs</definition>
+      </genre>
+      <link uri="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
+    </serviceGroup>
+  </serviceGroups>
+</serviceInformation>
