@@ -16,7 +16,7 @@
 # As with a standard diff, no output implies the documents are identical.
 
 echo 'Diffing Example XSI-to-SI transform output against example SI'
-diff <(xsltproc xsi_to_si.xsl test/XSI.example.xml | xmllint --exc-c14n -) <(xmllint --exc-c14n test/SI.example.xml)
+diff <(xsltproc xsi_to_si.xsl test/XSI.example.xml | xmllint --format --exc-c14n -) <(xmllint --format --exc-c14n test/SI.example.xml)
 
 echo 'Diffing Example SI-to-XSI transform output against example XSI'
-diff <(xsltproc si_to_xsi.xsl test/SI.example.xml | xmllint --exc-c14n -) <(xmllint --exc-c14n test/XSI.example.xml)
+diff <(xsltproc si_to_xsi.xsl test/SI.example.xml | xmllint --format --exc-c14n -) <(xmllint --format --exc-c14n test/XSI.example.xml)

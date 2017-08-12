@@ -43,7 +43,9 @@
       <mediaDescription>
         <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
       </mediaDescription>
-      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main"><epg:name>Hit-Chart/Song Requests</epg:name></epg:genre>
+      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <epg:name>Hit-Chart/Song Requests</epg:name>
+      </epg:genre>
       <keywords>station,1,one,county,countshire,best,music</keywords>
       <link url="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
       <memberOf id="station1"/>
@@ -69,7 +71,9 @@
         <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
       </mediaDescription>
       <keywords>station,1,one,county,countshire,best,music</keywords>
-      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main"><epg:name>Hit-Chart/Song Requests</epg:name></epg:genre>
+      <epg:genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
+        <epg:name>Hit-Chart/Song Requests</epg:name>
+      </epg:genre>
       <link url="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
     </group>
   </groups>
