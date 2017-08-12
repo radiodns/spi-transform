@@ -7,7 +7,8 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     exclude-result-prefixes="spi">
 
-    <xsl:output encoding="UTF-8" />
+    <xsl:output indent="yes" encoding="UTF-8"/>
+    <xsl:strip-space elements="*"/>
 
     <!-- moves elements formerly of the DAB EPG namespace back out to that namespace -->
     <xsl:template match="spi:definition |
