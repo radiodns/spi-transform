@@ -81,6 +81,15 @@
         </serviceGroupMember>
     </xsl:template>
 
+    <!-- changes legacy structure of genre tags to newer SI format -->
+    <xsl:template match="/repg:serviceInformation/repg:groups/repg:group/epg:genre |
+                         /repg:serviceInformation/repg:services/repg:service/epg:genre">
+        <genre>
+            <xsl:apply-templates select="@*"/>
+            <xsl:value-of select="epg:name"/>
+        </genre>
+    </xsl:template>
+
     <!-- maps XSI link element url attribute to SI link element uri attribute -->
     <xsl:template match="/repg:serviceInformation/repg:groups/repg:group/repg:link/@url |
                          /repg:serviceInformation/repg:services/repg:*[local-name() = 'serviceProvider' or local-name() = 'service']/repg:link/@url">

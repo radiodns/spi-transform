@@ -88,6 +88,17 @@
         </memberOf>
     </xsl:template>
 
+    <!-- changes SI genre structure to legacy XSI/EPG format -->
+    <xsl:template match="/spi:serviceInformation/spi:services/spi:service/spi:genre |
+                         /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:genre">
+        <epg:genre>
+            <xsl:apply-templates select="@*"/>
+            <epg:name>
+                <xsl:value-of select="."/>
+            </epg:name>
+        </epg:genre>
+    </xsl:template>
+
     <!-- maps SI link element uri attribute to XSI link element url attribute -->
     <xsl:template match="/spi:serviceInformation/spi:services/spi:*[local-name() = 'service' or local-name() = 'serviceProvider']/spi:link/@uri |
                          /spi:serviceInformation/spi:serviceGroups/spi:serviceGroup/spi:link/@uri">

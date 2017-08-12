@@ -43,10 +43,7 @@
       <mediaDescription>
         <multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
       </mediaDescription>
-      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
-        <name preferred="true">Hit-Chart/Song Requests</name>
-        <definition>All your favourite songs</definition>
-      </genre>
+      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">Hit-Chart/Song Requests</genre>
       <keywords>station,1,one,county,countshire,best,music</keywords>
       <link uri="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
       <serviceGroupMember id="station1"/>
@@ -72,10 +69,7 @@
         <multimedia mimeValue="image/png" xml:lang="en" url="http://station1.com/images/logo.png" type="logo_square" width="32" height="32"/>
       </mediaDescription>
       <keywords>station,1,one,county,countshire,best,music</keywords>
-      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">
-        <name preferred="true">Hit-Chart/Song Requests</name>
-        <definition>All your favourite songs</definition>
-      </genre>
+      <genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10" type="main">Hit-Chart/Song Requests</genre>
       <link uri="http://station1.com/" mimeValue="text/html" lang="en" description="Web:" expiryTime="2017-12-31T23:59:59+00:00"/>
     </serviceGroup>
   </serviceGroups>
