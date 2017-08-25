@@ -70,9 +70,12 @@
 
     <!-- maps XSI serviceID element to SI bearer element -->
     <xsl:template match="/repg:serviceInformation/repg:services/repg:service/repg:serviceID">
-        <bearer>
-            <xsl:apply-templates select="@*|node()"/>
-        </bearer>
+        <!-- attempts to prevent FM bearers with ISO country code, invalid in SI format -->
+        <xsl:if test="not(starts-with(@id, 'fm:') and string-length(@id) = 16)">
+            <bearer>
+                <xsl:apply-templates select="@*|node()"/>
+            </bearer>
+        </xsl:if>
     </xsl:template>
 
     <!-- maps XSI memberOf element to SI serviceGroupMember element -->
